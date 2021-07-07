@@ -27,6 +27,7 @@ public class DefaultAuthTokenService extends AbstractAuthTokenService<DefaultAut
             throw new CheckTokenException("Token expired!");
         return new DefaultAuthPrincipal(body.authorities,
                 body.scope,
+                body.client_authorities,
                 body.user_name,
                 body.client_id,
                 Long.valueOf(body.username),
@@ -39,6 +40,7 @@ public class DefaultAuthTokenService extends AbstractAuthTokenService<DefaultAut
 
         private String client_id, username, user_name;
         private Collection<String> authorities, scope;
+        private Collection<String> client_authorities;
         private Boolean active;
         private Instant exp;
     }

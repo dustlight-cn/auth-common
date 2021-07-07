@@ -5,7 +5,9 @@ import java.util.Collection;
 
 public interface AuthPrincipal extends Principal {
 
-    Collection<String> getAuthority();
+    Collection<String> getAuthorities();
+
+    Collection<String> getClientAuthorities();
 
     Collection<String> getScope();
 

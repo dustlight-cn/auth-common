@@ -11,7 +11,8 @@ import java.util.Collection;
 @NoArgsConstructor
 public class DefaultAuthPrincipal implements AuthPrincipal {
 
-    private Collection<String> authority, scope;
+    private Collection<String> authorities, scope;
+    private Collection<String> clientAuthorities;
     private String name, clientId;
     private Long uid;
     private Object body;

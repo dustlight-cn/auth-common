@@ -21,7 +21,7 @@ public class AuthResourceServerConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "plus.oauth2.resource-server",name = {"client-id", "client-secret", "uri"})
+    @ConditionalOnProperty(prefix = "plus.oauth2.resource-server", name = {"client-id", "client-secret", "uri"})
     public ReactiveAuthOpaqueTokenIntrospector reactiveAuthOpaqueTokenIntrospector(@Autowired AuthResourceServerProperties properties) {
         return new ReactiveAuthOpaqueTokenIntrospector(properties.getUri(), properties.getClientId(), properties.getClientSecret());
     }
