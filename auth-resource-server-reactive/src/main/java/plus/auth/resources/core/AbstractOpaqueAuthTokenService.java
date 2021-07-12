@@ -10,13 +10,13 @@ import reactor.core.publisher.Mono;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
-public abstract class AbstractAuthTokenService<T> implements TokenService {
+public abstract class AbstractOpaqueAuthTokenService<T> implements TokenService {
 
     private WebClient client;
 
     private String clientId, clientSecret, uri, base64Header;
 
-    public AbstractAuthTokenService(String clientId, String clientSecret, String uri) {
+    public AbstractOpaqueAuthTokenService(String clientId, String clientSecret, String uri) {
         client = WebClient.create();
         this.clientId = clientId;
         this.clientSecret = clientSecret;

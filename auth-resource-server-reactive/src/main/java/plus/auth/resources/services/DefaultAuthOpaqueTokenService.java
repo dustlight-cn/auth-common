@@ -2,7 +2,7 @@ package plus.auth.resources.services;
 
 import lombok.Getter;
 import lombok.Setter;
-import plus.auth.resources.core.AbstractAuthTokenService;
+import plus.auth.resources.core.AbstractOpaqueAuthTokenService;
 import plus.auth.resources.core.AuthPrincipal;
 import plus.auth.resources.core.CheckTokenException;
 import plus.auth.resources.core.DefaultAuthPrincipal;
@@ -10,9 +10,9 @@ import plus.auth.resources.core.DefaultAuthPrincipal;
 import java.time.Instant;
 import java.util.Collection;
 
-public class DefaultAuthTokenService extends AbstractAuthTokenService<DefaultAuthTokenService.DefaultBody> {
+public class DefaultAuthOpaqueTokenService extends AbstractOpaqueAuthTokenService<DefaultAuthOpaqueTokenService.DefaultBody> {
 
-    public DefaultAuthTokenService(String clientId, String clientSecret, String uri) {
+    public DefaultAuthOpaqueTokenService(String clientId, String clientSecret, String uri) {
         super(clientId, clientSecret, uri);
     }
 
