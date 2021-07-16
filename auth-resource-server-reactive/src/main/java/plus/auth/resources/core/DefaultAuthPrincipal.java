@@ -17,4 +17,8 @@ public class DefaultAuthPrincipal implements AuthPrincipal {
     private Long uid;
     private Object body;
 
+    @Override
+    public String getUidString() {
+        return uid != null ? uid.toString() : null;
+    }
 }

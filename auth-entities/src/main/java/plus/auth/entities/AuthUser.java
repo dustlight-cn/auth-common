@@ -27,9 +27,13 @@ public class AuthUser {
 
     String avatar;
 
-    Date accountExpiredAt,credentialsExpiredAt,unlockAt,createdAt,updatedAt;
+    Date accountExpiredAt, credentialsExpiredAt, unlockAt, createdAt, updatedAt;
 
     Collection<AuthUserRole> userRoles;
 
     Collection<String> authorities;
+
+    public String getUidString() {
+        return uid != null ? uid.toString() : null;
+    }
 }
