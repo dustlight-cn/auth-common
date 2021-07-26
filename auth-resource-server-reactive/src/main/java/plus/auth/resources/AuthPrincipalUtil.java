@@ -6,20 +6,29 @@ import plus.auth.resources.core.AuthPrincipal;
 import plus.auth.resources.core.DefaultAuthPrincipal;
 
 import java.util.Collection;
+import java.util.Map;
 
 public class AuthPrincipalUtil {
 
     public static AuthPrincipal getAuthPrincipal(AbstractOAuth2TokenAuthenticationToken authentication) {
-        AbstractOAuth2TokenAuthenticationToken a = authentication;
+        if (authentication == null)
+            return null;
         DefaultAuthPrincipal tmp = new DefaultAuthPrincipal();
-        tmp.setAuthorities(AuthorityUtils.authorityListToSet(a.getAuthorities()));
-        tmp.setUid(Long.valueOf(a.getName()));
-        if (a.getTokenAttributes() != null) {
-            tmp.setClientId((String) a.getTokenAttributes().get("client_id"));
-            tmp.setClientAuthorities((Collection<String>) a.getTokenAttributes().get("client_authorities"));
-            tmp.setName((String) a.getTokenAttributes().get("user_name"));
-            tmp.setScope((Collection<String>) a.getTokenAttributes().get("scope"));
-            tmp.setBody(a.getTokenAttributes());
+        if (authentication.getAuthorities() != null)
+            tmp.setAuthorities(AuthorityUtils.authorityListToSet(authentication.getAuthorities()));
+        if (authentication.getName() != null)
+            tmp.setUid(Long.valueOf(authentication.getName()));
+        if (authentication.getTokenAttributes() != null) {
+            Map tokenAttributes = authentication.getTokenAttributes();
+            if (tokenAttributes.containsKey("client_id"))
+                tmp.setClientId(tokenAttributes.get("client_id").toString());
+            if (tokenAttributes.containsKey("client_authorities"))
+                tmp.setClientAuthorities((Collection<String>) tokenAttributes.get("client_authorities"));
+            if (tokenAttributes.containsKey("user_name"))
+                tmp.setName(tokenAttributes.get("user_name").toString());
+            if (tokenAttributes.containsKey("scope"))
+                tmp.setScope((Collection<String>) tokenAttributes.get("scope"));
+            tmp.setBody(authentication.getTokenAttributes());
         }
         return tmp;
     }
