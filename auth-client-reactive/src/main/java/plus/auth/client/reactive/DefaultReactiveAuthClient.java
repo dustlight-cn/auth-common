@@ -2,11 +2,6 @@ package plus.auth.client.reactive;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.oauth2.client.InMemoryReactiveOAuth2AuthorizedClientService;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
-import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction;
-import org.springframework.security.oauth2.client.web.server.AuthenticatedPrincipalServerOAuth2AuthorizedClientRepository;
 import org.springframework.web.reactive.function.client.WebClient;
 import plus.auth.entities.AuthUser;
 import plus.auth.entities.AuthUsers;
@@ -23,16 +18,15 @@ public class DefaultReactiveAuthClient implements ReactiveAuthClient {
 
     private WebClient webClient;
 
-    public DefaultReactiveAuthClient(ClientRegistration clientRegistration,
+    public DefaultReactiveAuthClient(String clientId,
+                                     String clientSecret,
+                                     String tokenUri,
                                      String apiEndpoint) {
-        ReactiveClientRegistrationRepository cr = s -> Mono.just(clientRegistration);
-        ServerOAuth2AuthorizedClientExchangeFilterFunction oauth =
-                new ServerOAuth2AuthorizedClientExchangeFilterFunction(cr,
-                        new AuthenticatedPrincipalServerOAuth2AuthorizedClientRepository(new InMemoryReactiveOAuth2AuthorizedClientService(cr)));
+
         this.apiEndpoint = apiEndpoint;
-        oauth.setDefaultClientRegistrationId("auth");
         webClient = WebClient.builder()
-                .filter(oauth)
+                .baseUrl(apiEndpoint)
+                .filter(new AuthClientFilter(tokenUri, clientId, clientSecret))
                 .build();
     }
 
@@ -40,10 +34,10 @@ public class DefaultReactiveAuthClient implements ReactiveAuthClient {
     public Mono<AuthUser> getUser(Long uid) {
         return webClient
                 .get()
-                .uri(apiEndpoint + GET_USER_URI, uid)
+                .uri(GET_USER_URI, uid)
                 .retrieve()
                 .bodyToMono(AuthUser.class)
-                .onErrorMap(throwable -> new AuthException("Fail to get user: " + uid,throwable))
+                .onErrorMap(throwable -> new AuthException("Fail to get user: " + uid, throwable))
                 .switchIfEmpty(Mono.error(new UserNotFoundException("User not found: " + uid)));
     }
 
@@ -59,8 +53,8 @@ public class DefaultReactiveAuthClient implements ReactiveAuthClient {
         }
         return webClient
                 .get()
-                .uri(apiEndpoint + GET_USERS_URI, uidString.toString())
+                .uri(GET_USERS_URI, uidString.toString())
                 .retrieve().bodyToMono(AuthUsers.class)
-                .onErrorMap(throwable -> new AuthException("Fail to get users: " + uidString + ", " + throwable.getMessage(),throwable));
+                .onErrorMap(throwable -> new AuthException("Fail to get users: " + uidString + ", " + throwable.getMessage(), throwable));
     }
 }
