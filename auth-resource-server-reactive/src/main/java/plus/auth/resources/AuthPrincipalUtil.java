@@ -28,6 +28,8 @@ public class AuthPrincipalUtil {
                 tmp.setName(tokenAttributes.get("user_name").toString());
             if (tokenAttributes.containsKey("scope"))
                 tmp.setScope((Collection<String>) tokenAttributes.get("scope"));
+            if (tokenAttributes.containsKey("member"))
+                tmp.setMember((Boolean) tokenAttributes.get("member"));
             tmp.setBody(authentication.getTokenAttributes());
         }
         return tmp;

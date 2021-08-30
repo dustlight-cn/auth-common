@@ -3,6 +3,7 @@ package plus.auth.client.reactive;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.reactive.function.client.WebClient;
+import plus.auth.entities.AuthClient;
 import plus.auth.entities.AuthUser;
 import plus.auth.entities.AuthUsers;
 import reactor.core.publisher.Mono;
@@ -15,6 +16,7 @@ public class DefaultReactiveAuthClient implements ReactiveAuthClient {
 
     private static final String GET_USER_URI = "/v1/users/{uid}";
     private static final String GET_USERS_URI = "/v1/users?uid={uid}";
+    private static final String GET_USER_CLIENT_URI = "/v1/users/{uid}/clients/{cid}";
 
     private WebClient webClient;
 
@@ -56,5 +58,24 @@ public class DefaultReactiveAuthClient implements ReactiveAuthClient {
                 .uri(GET_USERS_URI, uidString.toString())
                 .retrieve().bodyToMono(AuthUsers.class)
                 .onErrorMap(throwable -> new AuthException("Fail to get users: " + uidString + ", " + throwable.getMessage(), throwable));
+    }
+
+    @Override
+    public Mono<AuthClient> getUserClient(Long uid, String cid) {
+        return webClient
+                .get()
+                .uri(GET_USER_CLIENT_URI, uid, cid)
+                .retrieve()
+                .bodyToMono(AuthClient.class)
+                .onErrorMap(throwable -> new AuthException("Fail to get client: " + cid, throwable))
+                .switchIfEmpty(Mono.error(new ClientNotFoundException("Client not found: " + cid)));
+    }
+
+    @Override
+    public Mono<Boolean> isClientMember(Long uid, String cid) {
+        return webClient
+                .head()
+                .uri(GET_USER_CLIENT_URI, uid, cid)
+                .exchangeToMono(clientResponse -> Mono.just(clientResponse.statusCode().is2xxSuccessful() ? true : false));
     }
 }
