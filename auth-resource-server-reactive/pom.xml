@@ -52,6 +52,10 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>plus.auth</groupId>
+            <artifactId>auth-client-reactive</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
