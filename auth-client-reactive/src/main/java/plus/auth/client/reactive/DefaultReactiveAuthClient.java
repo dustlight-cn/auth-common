@@ -32,6 +32,14 @@ public class DefaultReactiveAuthClient implements ReactiveAuthClient {
                 .build();
     }
 
+    public DefaultReactiveAuthClient(String token, String apiEndpoint) {
+        this.apiEndpoint = apiEndpoint;
+        webClient = WebClient.builder()
+                .baseUrl(apiEndpoint)
+                .filter(new AuthSimpleClientFilter(token))
+                .build();
+    }
+
     @Override
     public Mono<AuthUser> getUser(Long uid) {
         return webClient
