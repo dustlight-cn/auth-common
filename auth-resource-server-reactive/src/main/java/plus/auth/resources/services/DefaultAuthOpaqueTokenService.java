@@ -30,6 +30,7 @@ public class DefaultAuthOpaqueTokenService extends AbstractOpaqueAuthTokenServic
                 body.client_authorities,
                 body.user_name,
                 body.client_id,
+                body.member,
                 Long.valueOf(body.username),
                 body);
     }
@@ -41,6 +42,7 @@ public class DefaultAuthOpaqueTokenService extends AbstractOpaqueAuthTokenServic
         private String client_id, username, user_name;
         private Collection<String> authorities, scope;
         private Collection<String> client_authorities;
+        private Boolean member;
         private Boolean active;
         private Instant exp;
     }

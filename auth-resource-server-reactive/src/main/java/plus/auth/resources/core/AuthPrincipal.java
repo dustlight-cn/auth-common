@@ -18,4 +18,6 @@ public interface AuthPrincipal extends Principal {
     Object getBody();
 
     String getUidString();
+
+    Boolean isMember();
 }
