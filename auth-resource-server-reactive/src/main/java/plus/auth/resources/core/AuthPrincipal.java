@@ -1,9 +1,11 @@
 package plus.auth.resources.core;
 
-import java.security.Principal;
+import io.swagger.v3.oas.annotations.Hidden;
+
 import java.util.Collection;
 
-public interface AuthPrincipal extends Principal {
+@Hidden
+public interface AuthPrincipal {
 
     Collection<String> getAuthorities();
 
@@ -12,6 +14,8 @@ public interface AuthPrincipal extends Principal {
     Collection<String> getScope();
 
     String getClientId();
+
+    String getName();
 
     Long getUid();
 
