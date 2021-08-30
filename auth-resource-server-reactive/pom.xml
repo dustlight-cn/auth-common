@@ -5,7 +5,7 @@
     <parent>
         <artifactId>auth-common</artifactId>
         <groupId>plus.auth</groupId>
-        <version>1.1.0-alpha-2-SNAPSHOT</version>
+        <version>1.1.1-alpha-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>auth-resource-server-reactive</artifactId>
