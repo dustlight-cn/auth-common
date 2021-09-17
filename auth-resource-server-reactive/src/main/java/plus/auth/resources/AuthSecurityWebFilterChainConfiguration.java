@@ -15,7 +15,7 @@ import plus.auth.resources.services.ReactiveAuthOpaqueTokenIntrospector;
 @Configuration
 public class AuthSecurityWebFilterChainConfiguration {
 
-    protected Log logger = LogFactory.getLog(getClass());
+    protected Log logger = LogFactory.getLog(AuthSecurityWebFilterChainConfiguration.class);
 
     @Bean
     @ConditionalOnProperty(prefix = "plus.oauth2.resource-server", name = {"token-type"}, havingValue = "jwt", matchIfMissing = true)
