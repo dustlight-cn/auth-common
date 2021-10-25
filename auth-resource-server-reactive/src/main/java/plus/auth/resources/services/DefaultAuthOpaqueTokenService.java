@@ -22,7 +22,7 @@ public class DefaultAuthOpaqueTokenService extends AbstractOpaqueAuthTokenServic
     }
 
     @Override
-    protected AuthPrincipal map(DefaultBody body) {
+    protected AuthPrincipal map(DefaultBody body, String token) {
         if (body.exp != null && body.exp.isBefore(Instant.now()))
             throw new CheckTokenException("Token expired!");
         return new DefaultAuthPrincipal(body.authorities,
@@ -32,7 +32,8 @@ public class DefaultAuthOpaqueTokenService extends AbstractOpaqueAuthTokenServic
                 body.client_id,
                 body.member,
                 Long.valueOf(body.username),
-                body);
+                body,
+                token);
     }
 
     @Getter

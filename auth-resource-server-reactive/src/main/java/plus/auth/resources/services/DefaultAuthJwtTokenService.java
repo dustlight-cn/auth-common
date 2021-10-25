@@ -25,6 +25,7 @@ public class DefaultAuthJwtTokenService extends AbstractJwtAuthTokenService {
                 body.getClaimAsString("client_id"),
                 body.getClaimAsBoolean("member"),
                 Long.valueOf(body.getClaimAsString("username")),
-                body);
+                body,
+                body.getTokenValue());
     }
 }

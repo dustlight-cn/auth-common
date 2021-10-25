@@ -33,13 +33,13 @@ public abstract class AbstractOpaqueAuthTokenService<T> implements TokenService 
                 .body(BodyInserters.fromFormData("token", token))
                 .retrieve()
                 .bodyToMono(bodyClass())
-                .map(this::map)
+                .map(body -> map(body, token))
                 .onErrorMap(throwable -> new CheckTokenException("Check token failed: " + throwable.getMessage(), throwable));
     }
 
     protected abstract Class<T> bodyClass();
 
-    protected abstract AuthPrincipal map(T body);
+    protected abstract AuthPrincipal map(T body, String token);
 
     private void refreshBase64Header() {
         base64Header = Base64.getEncoder().encodeToString((clientId + ":" + clientSecret).getBytes(StandardCharsets.UTF_8));

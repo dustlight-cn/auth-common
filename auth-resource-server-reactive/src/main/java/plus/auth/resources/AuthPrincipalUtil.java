@@ -14,6 +14,8 @@ public class AuthPrincipalUtil {
         if (authentication == null)
             return null;
         DefaultAuthPrincipal tmp = new DefaultAuthPrincipal();
+        if (authentication.getToken() != null)
+            tmp.setAccessToken(authentication.getToken().getTokenValue());
         if (authentication.getAuthorities() != null)
             tmp.setAuthorities(AuthorityUtils.authorityListToSet(authentication.getAuthorities()));
         if (authentication.getName() != null)

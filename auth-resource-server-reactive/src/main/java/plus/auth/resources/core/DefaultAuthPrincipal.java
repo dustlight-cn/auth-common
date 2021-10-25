@@ -17,6 +17,7 @@ public class DefaultAuthPrincipal implements AuthPrincipal {
     private Boolean member;
     private Long uid;
     private Object body;
+    private String accessToken;
 
     @Override
     public String getUidString() {

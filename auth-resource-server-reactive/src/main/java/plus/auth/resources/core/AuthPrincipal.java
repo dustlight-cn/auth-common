@@ -24,4 +24,6 @@ public interface AuthPrincipal {
     String getUidString();
 
     Boolean isMember();
+
+    String getAccessToken();
 }
