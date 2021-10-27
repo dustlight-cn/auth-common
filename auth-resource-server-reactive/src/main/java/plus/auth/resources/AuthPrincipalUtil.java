@@ -1,9 +1,13 @@
 package plus.auth.resources;
 
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.server.resource.authentication.AbstractOAuth2TokenAuthenticationToken;
+import org.springframework.util.StringUtils;
+import plus.auth.client.reactive.ReactiveAuthClient;
 import plus.auth.resources.core.AuthPrincipal;
 import plus.auth.resources.core.DefaultAuthPrincipal;
+import reactor.core.publisher.Mono;
 
 import java.util.Collection;
 import java.util.Map;
@@ -35,5 +39,19 @@ public class AuthPrincipalUtil {
             tmp.setBody(authentication.getTokenAttributes());
         }
         return tmp;
+    }
+
+    public static Mono<String> obtainClientId(ReactiveAuthClient client, String clientId, AuthPrincipal principal) {
+        if (StringUtils.hasText(clientId) && !client.equals(principal.getClientId()))
+            return client.isClientMember(principal.getUid(), clientId)
+                    .flatMap(aBoolean -> aBoolean ? Mono.just(clientId) : Mono.error(new AccessDeniedException("Access Denied")));
+        return Mono.just(principal.getClientId());
+    }
+
+    public static Mono<String> obtainClientIdRequireMember(ReactiveAuthClient client, String clientId, AuthPrincipal principal) {
+        if (StringUtils.hasText(clientId) && !client.equals(principal.getClientId()))
+            return client.isClientMember(principal.getUid(), clientId)
+                    .flatMap(aBoolean -> aBoolean ? Mono.just(clientId) : Mono.error(new AccessDeniedException("Access Denied")));
+        return principal.isMember() || principal.getUid() == null ? Mono.just(principal.getClientId()) : Mono.error(new AccessDeniedException("Access Denied"));
     }
 }
