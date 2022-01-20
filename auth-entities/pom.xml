@@ -10,6 +10,9 @@
     </parent>
     <artifactId>auth-entities</artifactId>
 
+    <name>auth-entities</name>
+    <description>Auth Common Module - auth-entities</description>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>

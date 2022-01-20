@@ -10,6 +10,9 @@
     </parent>
     <artifactId>auth-resource-server-reactive</artifactId>
 
+    <name>auth-resource-server-reactive</name>
+    <description>Auth Common Module - auth-resource-server-reactive</description>
+
     <properties>
         <spring-boot.version>2.5.2</spring-boot.version>
     </properties>

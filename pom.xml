@@ -6,6 +6,8 @@
     <groupId>cn.dustlight.auth</groupId>
     <artifactId>auth-common</artifactId>
     <version>1.1.1-alpha</version>
+    <name>auth-common</name>
+    <description>Auth Common Module</description>
 
     <properties>
         <java.version>11</java.version>
