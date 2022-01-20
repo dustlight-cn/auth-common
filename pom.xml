@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <groupId>plus.auth</groupId>
+    <groupId>cn.dustlight.auth</groupId>
     <artifactId>auth-common</artifactId>
     <version>1.1.1-alpha-1-SNAPSHOT</version>
 
@@ -27,17 +27,17 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>plus.auth</groupId>
+                <groupId>cn.dustlight.auth</groupId>
                 <artifactId>auth-entities</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>plus.auth</groupId>
+                <groupId>cn.dustlight.auth</groupId>
                 <artifactId>auth-client-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>plus.auth</groupId>
+                <groupId>cn.dustlight.auth</groupId>
                 <artifactId>auth-resource-server-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -48,19 +48,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <distributionManagement>
-        <repository>
-            <id>rdc-releases</id>
-            <name>Release</name>
-            <url>https://packages.aliyun.com/maven/repository/2106480-release-GJHJba/</url>
-        </repository>
-        <snapshotRepository>
-            <id>rdc-snapshots</id>
-            <name>Snapshot</name>
-            <url>https://packages.aliyun.com/maven/repository/2106480-snapshot-hEcsFi/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <build>
         <plugins>
@@ -144,4 +131,40 @@
         </pluginManagement>
     </build>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>OSS Snapshots Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>OSS Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <url>https://github.com/Hansin1997/auth-common</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo,manual</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Hansin1997</name>
+            <email>hansin@dustlight.cn</email>
+            <url>https://github.com/Hansin1997</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/Hansin1997/auth-common.git</connection>
+        <developerConnection>scm:git:https://github.com/Hansin1997/auth-common.git</developerConnection>
+        <url>https://github.com/Hansin1997/auth-common</url>
+    </scm>
 </project>

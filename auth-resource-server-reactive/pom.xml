@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>auth-common</artifactId>
-        <groupId>plus.auth</groupId>
+        <groupId>cn.dustlight.auth</groupId>
         <version>1.1.1-alpha-1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -16,7 +16,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>plus.auth</groupId>
+            <groupId>cn.dustlight.auth</groupId>
             <artifactId>auth-entities</artifactId>
         </dependency>
 
@@ -58,7 +58,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>plus.auth</groupId>
+            <groupId>cn.dustlight.auth</groupId>
             <artifactId>auth-client-reactive</artifactId>
         </dependency>
     </dependencies>

@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>plus.auth</groupId>
+        <groupId>cn.dustlight.auth</groupId>
         <artifactId>auth-common</artifactId>
         <version>1.1.1-alpha-1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -32,7 +32,7 @@
             <version>2.11.4</version>
         </dependency>
         <dependency>
-            <groupId>plus.auth</groupId>
+            <groupId>cn.dustlight.auth</groupId>
             <artifactId>auth-entities</artifactId>
         </dependency>
         <dependency>
