@@ -30,7 +30,7 @@ public class AuthResourceServerConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.resource-server", name = {"client-id", "client-secret", "uri"})
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.resource-server", name = {"client-id", "client-secret"})
     public ReactiveAuthOpaqueTokenIntrospector reactiveAuthOpaqueTokenIntrospector(@Autowired AuthResourceServerProperties properties) {
         return new ReactiveAuthOpaqueTokenIntrospector(properties.getUri(), properties.getClientId(), properties.getClientSecret());
     }
@@ -41,7 +41,7 @@ public class AuthResourceServerConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.client", name = "api-endpoint")
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.client", name = {"client-id", "client-secret"})
     public SimpleReactiveAuthClientResolver simpleReactiveAuthClientResolver(@Autowired AuthClientProperties properties) {
         return new SimpleReactiveAuthClientResolver(properties.getApiEndpoint());
     }

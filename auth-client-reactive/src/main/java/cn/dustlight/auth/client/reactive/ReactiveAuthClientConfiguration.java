@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class ReactiveAuthClientConfiguration {
 
     @Bean
-    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.client", name = {"client-secret", "client-id", "api-endpoint"})
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.client", name = {"client-secret", "client-id"})
     public ReactiveAuthClient reactiveAuthClient(@Autowired AuthClientProperties properties) {
         return new DefaultReactiveAuthClient(properties.getClientId(),
                 properties.getClientSecret(),
