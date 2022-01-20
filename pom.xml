@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <groupId>cn.dustlight.auth</groupId>
     <artifactId>auth-common</artifactId>
-    <version>1.1.1-alpha-1-SNAPSHOT</version>
+    <version>1.1.1-alpha</version>
 
     <properties>
         <java.version>11</java.version>
@@ -144,7 +144,7 @@
         </repository>
     </distributionManagement>
 
-    <url>https://github.com/Hansin1997/auth-common</url>
+    <url>https://github.com/dustlight-cn/auth-common</url>
 
     <licenses>
         <license>
@@ -163,8 +163,8 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/Hansin1997/auth-common.git</connection>
-        <developerConnection>scm:git:https://github.com/Hansin1997/auth-common.git</developerConnection>
-        <url>https://github.com/Hansin1997/auth-common</url>
+        <connection>scm:git:https://github.com/dustlight-cn/auth-common.git</connection>
+        <developerConnection>scm:git:https://github.com/dustlight-cn/auth-common.git</developerConnection>
+        <url>https://github.com/dustlight-cn/auth-common</url>
     </scm>
 </project>
