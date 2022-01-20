@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "plus.oauth2.resource-server")
+@ConfigurationProperties(prefix = "dustlight.auth.oauth2.resource-server")
 public class AuthResourceServerProperties {
 
     private String clientId, clientSecret, uri, jwkSetUri, scopePrefix = "SCOPE_";

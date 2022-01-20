@@ -18,7 +18,7 @@ public class AuthSecurityWebFilterChainConfiguration {
     protected Log logger = LogFactory.getLog(AuthSecurityWebFilterChainConfiguration.class);
 
     @Bean
-    @ConditionalOnProperty(prefix = "plus.oauth2.resource-server", name = {"token-type"}, havingValue = "jwt", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.resource-server", name = {"token-type"}, havingValue = "jwt", matchIfMissing = true)
     public SecurityWebFilterChain jwtSpringSecurityFilterChain(@Autowired ServerHttpSecurity http,
                                                                @Autowired AuthResourceServerProperties properties,
                                                                @Autowired AuthJwtAuthenticationConverter converter) {
@@ -36,7 +36,7 @@ public class AuthSecurityWebFilterChainConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "plus.oauth2.resource-server", name = {"token-type"}, havingValue = "opaque")
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.resource-server", name = {"token-type"}, havingValue = "opaque")
     public SecurityWebFilterChain opaqueSpringSecurityFilterChain(@Autowired ServerHttpSecurity http,
                                                                   @Autowired AuthResourceServerProperties properties,
                                                                   @Autowired ReactiveAuthOpaqueTokenIntrospector introspector) {

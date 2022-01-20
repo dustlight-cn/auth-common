@@ -6,10 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "plus.oauth2.client")
+@ConfigurationProperties(prefix = "dustlight.auth.oauth2.client")
 public class AuthClientProperties {
 
     private String clientId,clientSecret;
-    private String tokenUri = "http://api.wgv/v1/oauth/token";
-    private String apiEndpoint = "http://api.wgv";
+    private String tokenUri = "https://api.dustlight.cn/v1/oauth/token";
+    private String apiEndpoint = "https://api.dustlight.cn";
 }

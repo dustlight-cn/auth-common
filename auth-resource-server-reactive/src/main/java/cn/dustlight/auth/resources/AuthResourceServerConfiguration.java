@@ -18,19 +18,19 @@ import cn.dustlight.auth.resources.services.DefaultAuthOpaqueTokenService;
 public class AuthResourceServerConfiguration {
 
     @Bean
-    @ConditionalOnProperty(prefix = "plus.oauth2.resource-server", name = {"token-type"}, havingValue = "opaque")
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.resource-server", name = {"token-type"}, havingValue = "opaque")
     public DefaultAuthOpaqueTokenService defaultAuthOpaqueTokenService(@Autowired AuthResourceServerProperties properties) {
         return new DefaultAuthOpaqueTokenService(properties.getClientId(), properties.getClientSecret(), properties.getUri());
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "plus.oauth2.resource-server", name = {"token-type"}, havingValue = "jwt", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.resource-server", name = {"token-type"}, havingValue = "jwt", matchIfMissing = true)
     public DefaultAuthJwtTokenService defaultAuthJwtTokenService(@Autowired AuthResourceServerProperties properties) {
         return new DefaultAuthJwtTokenService(properties.getJwkSetUri());
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "plus.oauth2.resource-server", name = {"client-id", "client-secret", "uri"})
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.resource-server", name = {"client-id", "client-secret", "uri"})
     public ReactiveAuthOpaqueTokenIntrospector reactiveAuthOpaqueTokenIntrospector(@Autowired AuthResourceServerProperties properties) {
         return new ReactiveAuthOpaqueTokenIntrospector(properties.getUri(), properties.getClientId(), properties.getClientSecret());
     }
@@ -41,7 +41,7 @@ public class AuthResourceServerConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "plus.oauth2.client", name = "api-endpoint")
+    @ConditionalOnProperty(prefix = "dustlight.auth.oauth2.client", name = "api-endpoint")
     public SimpleReactiveAuthClientResolver simpleReactiveAuthClientResolver(@Autowired AuthClientProperties properties) {
         return new SimpleReactiveAuthClientResolver(properties.getApiEndpoint());
     }

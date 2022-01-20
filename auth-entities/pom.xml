@@ -5,7 +5,7 @@
     <parent>
         <groupId>cn.dustlight.auth</groupId>
         <artifactId>auth-common</artifactId>
-        <version>1.1.1-alpha-1</version>
+        <version>1.1.1-alpha-2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>auth-entities</artifactId>
